@@ -6,14 +6,14 @@ describe("A disabled suite", function () {
         foo = 2
     });
 
-    it("has all specs disabled", function () {
+    it.skip("has all specs disabled", function () {
         expect(foo).toEqual(1);
     });
 });
 
 //Disable failing spec
 describe("Pending specs", function () {
-    it("can be declared 'it.skip'", function () {
+    xit("can be declared 'it.skip'", function () {
         expect(true).toBe(false);
     });
 
