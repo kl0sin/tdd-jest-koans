@@ -31,10 +31,12 @@ describe("matchers", function () {
 
         it("has a positive case", function () {
             //Use 'toBe' to expect that true is true
+            expect(true).toBe(true);
         });
 
         it("and can have a negative case", function () {
             ///Use 'toBe' to expect that false is not true
+            expect(false).not.toBe(true);
         });
 
 
@@ -42,9 +44,10 @@ describe("matchers", function () {
             var a = 12;
             var b = a;
 
-            expect(a).toBe(b);
             //expect(a===b).toBe(?);
+            expect(a).toBe(b);
             //Add assertion to expect that a is not null
+            expect(a).not.toBe(null);
         });
 
     });
@@ -63,8 +66,9 @@ describe("matchers", function () {
         };
 
         //Add assertion to expect that a.foo is defined
+        expect(a.foo).toBeDefined();
         //Add assertion to expect that a.bar is not defined
-
+        expect(a.bar).not.toBeDefined();
     });
 
     it("The `toBeUndefined` matcher compares against `undefined`", function () {
@@ -73,7 +77,9 @@ describe("matchers", function () {
         };
 
         //Add assertion to expect that a.foo is defined using toBeUndefined
+        expect(a.foo).not.toBeUndefined();
         //Add assertion to expect that a.bar is not defined using toBeUndefined
+        expect(a.bar).toBeUndefined();
     });
 
     it("The 'toBeNull' matcher compares against null", function () {
@@ -81,32 +87,48 @@ describe("matchers", function () {
         var foo = "foo";
 
         //Add assertion to expect that a is null
+        expect(a).toBeNull();
         //Add assertion to expect that foo is not null
+        expect(foo).not.toBeNull();
     });
 
     it("The 'toBeTruthy' matcher is for boolean casting testing", function () {
         var a = false;
         var b = "false";
         var c = undefined;
+        var d = [];
         var foo = "foo";
 
         //Use 'toBeTruthy' to check all values
+        expect(a).not.toBeTruthy();
+        expect(b).toBeTruthy();
+        expect(c).not.toBeTruthy();
+        expect(d).toBeTruthy();
+        expect(foo).toBeTruthy();
     });
 
     it("The 'toBeFalsy' matcher is for boolean casting testing", function () {
         var a = false;
         var b = "true";
         var c = undefined;
+        var d = [];
         var foo = "foo";
 
         //Use 'toBeFalsy' to check all values
+        expect(a).toBeFalsy();
+        expect(b).not.toBeFalsy();
+        expect(c).toBeFalsy();
+        expect(d).not.toBeFalsy();
+        expect(foo).not.toBeFalsy();
     });
 
     it("The 'toContain' matcher is for finding an item in an Array", function () {
         var a = ["foo", "bar", "baz"];
 
         //Add assertion to expect that a contains "bar"
+        expect(a).toContain('bar');
         //Add assertion to expect that a does not contain "quux"
+        expect(a).not.toContain('quux');
     });
 
     it("The 'toBeLessThan' matcher is for mathematical comparisons", function () {
@@ -114,7 +136,9 @@ describe("matchers", function () {
             e = 2.78;
 
         //Add assertion to expect that e is less than pi
+        expect(e).toBeLessThan(pi);
         //Add assertion to expect that pi is not less than e
+        expect(pi).not.toBeLessThan(e);
     });
 
     it("The 'toBeGreaterThan' matcher is for mathematical comparisons", function () {
@@ -122,17 +146,23 @@ describe("matchers", function () {
             e = 2.78;
 
         //Add assertion to expect that pi is greater than e
+        expect(pi).toBeGreaterThan(e);
         //Add assertion to expect that e is not greater than pi
+        expect(e).not.toBeGreaterThan(pi);
     });
 
     it("The 'toBeCloseTo' matcher is for precision math comparison", function () {
         var pi = 3.1415926,
             a = 3.13,
-            e = 2.78;
+            e = 2.65;
 
         //Add assertion that "pi" variable is close to "a" within one decimal point
+        expect(pi).toBeCloseTo(a, 1);
         //Add assertion that "pi" variable is not close to "a" within two decimal points
+        expect(pi).not.toBeCloseTo(a, 2);
         //Figure out what happens when you assert "pi" with "e" using toBeCloseTo with second argument 0
+        expect(pi).toBeCloseTo(e, 0);
+        //toBeCloseTo works with a precision of 5 decimal digits :)
     });
 
     it("The 'toThrow' matcher is for testing if a function throws an exception", function () {
@@ -144,7 +174,9 @@ describe("matchers", function () {
         };
 
         //Add assertion to expect that foo is not throwing exception
+        expect(foo).not.toThrow();
         //Add assertion to expect that bar is throwing exception
+        expect(bar).toThrow();
     });
 
     it("The 'toThrow' matcher is for testing a specific thrown exception", function () {
@@ -153,8 +185,11 @@ describe("matchers", function () {
         };
 
         //Add assertion to expect that foo is throwing exception with message "foo bar baz"
+        expect(foo).toThrow('foo bar baz');
         //Add assertion to expect that foo is throwing exception with message matching pattern /bar/
+        expect(foo).toThrow(/bar/);
         //Add assertion to expect that foo is throwing exception of specific Type
+        expect(foo).toThrow(TypeError);
     });
 
 });
