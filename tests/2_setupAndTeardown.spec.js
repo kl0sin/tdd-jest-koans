@@ -1,8 +1,8 @@
 describe("A spec (with setup and tear-down)", function () {
-    var foo = 0;
+    var foo = 1;
 
-    beforeEach(function () {
-        foo += 1;
+    afterEach(function () {
+        foo -= 1;
     });
 
     it("setups data for tests", function () {
